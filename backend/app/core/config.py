@@ -17,6 +17,12 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     
+    # Environment variable fields from .env
+    API_TITLE: Optional[str] = "FinRisk AI Engine"
+    API_VERSION: Optional[str] = "v1"
+    HOST: Optional[str] = "127.0.0.1"
+    PORT: Optional[int] = 8000
+    
     # API Keys & Database Connections
     GEMINI_API_KEY: Optional[str] = None
     DATABASE_URL: str = "sqlite:///./finrisk_platform.db"
@@ -29,7 +35,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
-        case_sensitive=True
+        case_sensitive=True,
+        extra="ignore"
     )
 
 

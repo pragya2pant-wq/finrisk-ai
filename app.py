@@ -54,6 +54,7 @@ with tab2:
         current_assets = st.number_input("Current Assets", value=50000.0)
     with col2:
         current_liabilities = st.number_input("Current Liabilities", value=25000.0)
+        inventory = st.number_input("Inventory", value=5000.0)
         total_debt = st.number_input("Total Debt", value=40000.0)
         total_equity = st.number_input("Total Equity", value=60000.0)
         interest_expense = st.number_input("Interest Expense", value=2000.0)
@@ -66,6 +67,7 @@ with tab2:
             "operating_income": operating_income,
             "current_assets": current_assets,
             "current_liabilities": current_liabilities,
+            "inventory": inventory,
             "total_debt": total_debt,
             "total_equity": total_equity,
             "interest_expense": interest_expense
@@ -84,9 +86,9 @@ with tab3:
         annual_income = st.number_input("Annual Income", value=85000.0)
         credit_score = st.number_input("Credit Score", value=720)
         loan_amount = st.number_input("Loan Amount", value=15000.0)
-        debt_to_income_ratio = st.number_input("Debt to Income Ratio", value=0.25)
+        debt_to_income_ratio = st.number_input("Debt to Income Ratio (%)", value=25.0)
     with col2:
-        revolving_utilization = st.number_input("Revolving Utilization", value=0.30)
+        revolving_utilization = st.number_input("Revolving Utilization (0.0 - 1.0)", value=0.30)
         num_delinquent_lines = st.number_input("Number of Delinquent Lines", value=0)
         num_credit_inquiries = st.number_input("Number of Credit Inquiries", value=1)
 

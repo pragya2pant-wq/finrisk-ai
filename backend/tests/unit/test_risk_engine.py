@@ -1,10 +1,11 @@
 """
-Unit Tests for XGBoost Credit ML Engine and SHAP Explainer.
+Unit Tests for XGBoost Credit ML Engine, SHAP Explainer, and Risk Scoring API Endpoint.
 
 Author: Pragya Pant
 Institute: iPEC Solutions
 """
 
+from fastapi.testclient import TestClient
 from app.schemas.risk import ApplicantRiskInput
 from app.services.credit_ml_engine import CreditMLEngine
 from app.services.shap_explainer import SHAPExplainer
@@ -57,3 +58,27 @@ def test_credit_ml_engine_prediction_low_risk() -> None:
     # Valid probability range and low risk grade assertion
     assert 0.0 <= prob_default <= 1.0
     assert grade in ["Low Risk", "Medium Risk"]
+
+
+def test_predict_credit_risk_endpoint_success(client: TestClient) -> None:
+    """Verify POST /api/v1/risk/predict returns 200 OK with prediction output schema."""
+    payload = {
+        "annual_income": 75000.0,
+        "debt_to_income_ratio": 25.0,
+        "revolving_utilization": 0.35,
+        "num_delinquent_lines": 0,
+        "num_credit_inquiries": 1,
+        "loan_amount": 20000.0,
+        "credit_score": 710
+    }
+
+    response = client.post("/api/v1/risk/predict", json=payload)
+
+    assert response.status_code == 200
+    data = response.json()
+    assert "applicant_id" in data
+    assert "probability_of_default" in data
+    assert "credit_risk_grade" in data
+    assert "approval_recommendation" in data
+    assert "top_risk_drivers" in data
+    assert len(data["top_risk_drivers"]) == 7
