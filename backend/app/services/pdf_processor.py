@@ -11,6 +11,8 @@ from pathlib import Path
 from typing import List, Dict, Any, Tuple
 import pdfplumber
 from pypdf import PdfReader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 from app.core.logging import logger
 from app.schemas.document import ExtractedTable, DocumentExtractionResponse
 
@@ -84,6 +86,18 @@ class PDFProcessor:
             extracted_tables=extracted_tables,
             metadata={"file_size_bytes": path.stat().st_size}
         )
+
+    @staticmethod
+    def create_text_chunks(text: str, chunk_size: int = 500, chunk_overlap: int = 50) -> List[str]:
+        """
+        Splits extracted text into recursive character chunks with overlap for RAG retrieval.
+        """
+        splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+            separators=["\n\n", "\n", " ", ""]
+        )
+        return splitter.split_text(text)
 
     @staticmethod
     def _clean_text(text: str) -> str:
