@@ -1,0 +1,26 @@
+# Virtual Environments
+finrisk_env/
+venv/
+.venv/
+env/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Databases & Local Logs
+*.db
+*.sqlite3
+logs/
+*.log
+
+# Vector DB & Raw Data Storage
+data/vector_db/
+data/raw/*
+!data/raw/.gitkeep
+
+# Environment Variables & Secrets
+.env
+.env.local

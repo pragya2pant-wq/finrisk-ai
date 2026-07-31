@@ -1,0 +1,4 @@
+﻿Credit Risk Analysis and Debt Obligations Report:
+1. Interest Rate Sensitivity: Fluctuations in base rates directly impact variable-rate debt obligations.
+2. Liquidity Risk: Maintaining sufficient working capital and current assets to cover short-term liabilities.
+3. Leverage Ratio: High debt-to-equity ratios increase default probabilities during economic downturns.
