@@ -16,6 +16,7 @@ class FinancialRatioInput(BaseModel):
     operating_income: float = Field(..., description="Operating income can be positive or negative")
     current_assets: float = Field(..., ge=0, description="Current assets must be non-negative")
     current_liabilities: float = Field(..., ge=0, description="Current liabilities must be non-negative")
+    inventory: float = Field(default=0.0, ge=0, description="Inventory value for quick ratio calculation")
     total_debt: float = Field(..., ge=0, description="Total debt must be non-negative")
     total_equity: float = Field(..., description="Total equity")
     interest_expense: float = Field(..., ge=0, description="Interest expense must be non-negative")

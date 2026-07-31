@@ -6,7 +6,10 @@ Institute: iPEC Solutions
 """
 
 from fastapi import APIRouter, HTTPException, status
-from app.schemas.financials import FinancialMetricsInput, RatioAnalysisOutput
+from app.schemas.financials import (
+    FinancialRatioInput,
+    RatioAnalysisOutput
+)
 from app.services.ratio_engine import FinancialRatioEngine
 from app.core.logging import logger
 
@@ -20,7 +23,7 @@ router = APIRouter()
     summary="Calculate Financial Ratios & Credit Health Score"
 )
 async def calculate_financial_ratios(
-    metrics: FinancialMetricsInput, company_name: str = "Target Entity"
+    metrics: FinancialRatioInput, company_name: str = "Target Entity"
 ) -> RatioAnalysisOutput:
     """
     Executes pure-Python deterministic financial ratio calculations, health benchmarks,

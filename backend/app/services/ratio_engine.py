@@ -9,9 +9,9 @@ Institute: iPEC Solutions
 """
 
 from app.schemas.financials import (
-    FinancialMetricsInput,
-    RatioAnalysisOutput,
-    RatioCategoryResult
+    FinancialRatioInput,
+    RatioCategoryResult,
+    RatioAnalysisOutput
 )
 from app.core.logging import logger
 
@@ -23,13 +23,13 @@ class FinancialRatioEngine:
 
     @staticmethod
     def calculate_all_ratios(
-        metrics: FinancialMetricsInput, company_name: str = "Target Entity"
+        metrics: FinancialRatioInput, company_name: str = "Target Entity"
     ) -> RatioAnalysisOutput:
         """
         Calculates all financial ratios and generates health status evaluations.
 
         Args:
-            metrics (FinancialMetricsInput): Validated raw financial input values.
+            metrics (FinancialRatioInput): Validated raw financial input values.
             company_name (str): Name of company analyzed.
 
         Returns:
@@ -38,9 +38,15 @@ class FinancialRatioEngine:
         logger.info(f"Calculating financial ratios for company: {company_name}")
 
         # 1. Liquidity Calculations
-        current_ratio = metrics.current_assets / metrics.current_liabilities
+        current_ratio = (
+            metrics.current_assets / metrics.current_liabilities
+            if metrics.current_liabilities > 0 else 0.0
+        )
         quick_assets = metrics.current_assets - metrics.inventory
-        quick_ratio = quick_assets / metrics.current_liabilities
+        quick_ratio = (
+            quick_assets / metrics.current_liabilities
+            if metrics.current_liabilities > 0 else 0.0
+        )
 
         liquidity_dict = {
             "current_ratio": RatioCategoryResult(
@@ -61,10 +67,13 @@ class FinancialRatioEngine:
         }
 
         # 2. Solvency / Leverage Calculations
-        debt_to_equity = metrics.total_debt / metrics.total_equity
+        debt_to_equity = (
+            metrics.total_debt / metrics.total_equity
+            if metrics.total_equity != 0 else 0.0
+        )
         interest_coverage = (
             metrics.operating_income / metrics.interest_expense
-            if metrics.interest_expense > 0 else 999.0  # High safety value if zero interest
+            if metrics.interest_expense > 0 else 999.0
         )
 
         solvency_dict = {
@@ -81,8 +90,14 @@ class FinancialRatioEngine:
         }
 
         # 3. Profitability Calculations
-        roe = (metrics.net_income / metrics.total_equity) * 100
-        operating_margin = (metrics.operating_income / metrics.total_revenue) * 100
+        roe = (
+            (metrics.net_income / metrics.total_equity) * 100
+            if metrics.total_equity != 0 else 0.0
+        )
+        operating_margin = (
+            (metrics.operating_income / metrics.total_revenue) * 100
+            if metrics.total_revenue > 0 else 0.0
+        )
 
         profitability_dict = {
             "return_on_equity_pct": RatioCategoryResult(
