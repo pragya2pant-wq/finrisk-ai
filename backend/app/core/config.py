@@ -25,6 +25,7 @@ class Settings(BaseSettings):
     
     # API Keys & Database Connections
     GEMINI_API_KEY: Optional[str] = None
+    GROQ_API_KEY: Optional[str] = None
     DATABASE_URL: str = "sqlite:///./finrisk_platform.db"
     VECTOR_DB_DIR: str = "./data/vector_db"
     

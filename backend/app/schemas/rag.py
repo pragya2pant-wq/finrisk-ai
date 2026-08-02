@@ -38,3 +38,4 @@ class RAGQueryResponse(BaseModel):
     query: str
     retrieved_chunks: List[SearchResultChunk]
     total_results: int
+    generated_answer: Optional[str] = Field(default=None, description="LLM generated summary from retrieved context")

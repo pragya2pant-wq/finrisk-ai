@@ -1,41 +1,42 @@
-# FinRisk AI — Financial Risk Analytics & RAG System
+# FinRisk AI — Financial Risk Analytics Platform
 
-A modular end-to-end system that combines Retrieval-Augmented Generation (RAG), ML Credit Scoring (XGBoost), and Financial Ratio Analysis into a single Streamlit dashboard.
+An enterprise-grade financial analytics system pairing a FastAPI REST API backend with a Streamlit executive dashboard.
 
 ---
 
-## Features
+## Key Features
 
-1. **Document & RAG Search:**
+1. **Document Ingestion & RAG Executive Search:**
    * Ingests financial PDFs into a ChromaDB vector store.
-   * Performs semantic vector searches over extracted chunks using embeddings.
+   * Uses semantic search and cosine similarity matching to return reference chunks.
 
 2. **Financial Ratio Engine:**
-   * Calculates liquidity, solvency, and profitability metrics.
-   * Assigns health status evaluations against industry benchmarks.
+   * Computes key liquidity, solvency, and profitability metrics.
+   * Evaluates metrics against financial benchmarks to derive an overall health score.
 
-3. **Credit Risk ML & SHAP Explanations:**
-   * Predicts default risk using an XGBoost model.
-   * Explains feature contributions using SHAP values.
+3. **Credit Risk ML Scoring & SHAP Explainability:**
+   * Predicts Probability of Default (PD) and risk grades using XGBoost.
+   * Analyzes local feature contributions for predictions using SHAP values.
+
+4. **Model Benchmarks & Evaluation:**
+   * Displays model performance metrics (ROC-AUC, Precision, F1-Score, Recall).
+
+5. **Prediction Audit Log & Compliance History:**
+   * Tracks session inferences and allows exporting log records as CSV files.
 
 ---
 
 ## Tech Stack
 
-* **Frontend:** Streamlit
-* **Backend:** FastAPI, Pydantic, Uvicorn
-* **ML / Vector DB:** XGBoost, SHAP, ChromaDB, SentenceTransformers
-* **Language:** Python 3.10
+* **Backend:** FastAPI, Pydantic v2, Uvicorn
+* **Frontend:** Streamlit, Plotly Express, Requests
+* **Machine Learning & Analytics:** XGBoost, SHAP, NumPy, Pandas, Scikit-Learn
+* **Vector Store & Embeddings:** ChromaDB, Sentence-Transformers, PyPDF
 
 ---
 
-## Setup & Run Instructions
+## Local Execution
 
-1. **Activate Virtual Environment:**
-   .\finrisk_env\Scripts\Activate.ps1
-
-2. **Start FastAPI Backend (Terminal 1):**
-   uvicorn app.main:app --reload
-
-3. **Start Streamlit Frontend (Terminal 2):**
-   streamlit run app.py
+### 1. Start the FastAPI Backend (Terminal 1)
+```bash
+uvicorn backend.app.main:app --reload --port 8000
