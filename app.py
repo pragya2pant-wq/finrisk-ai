@@ -1,10 +1,42 @@
-﻿import streamlit as st
+﻿import sys
+import subprocess
+import time
 import requests
 import pandas as pd
 import plotly.express as px
+import streamlit as st
 from datetime import datetime
 
 API_BASE_URL = "http://127.0.0.1:8000/api/v1"
+
+# Health check to verify if FastAPI backend is running
+def ensure_backend_running():
+    try:
+        response = requests.get("http://127.0.0.1:8000/health", timeout=2)
+        if response.status_code == 200:
+            return
+    except Exception:
+        pass
+
+    # Launch uvicorn if backend is offline
+    subprocess.Popen([
+        sys.executable, "-m", "uvicorn", 
+        "backend.app.main:app", 
+        "--host", "127.0.0.1", 
+        "--port", "8000"
+    ])
+
+    # Wait up to 10 seconds for backend to start
+    for _ in range(10):
+        time.sleep(1)
+        try:
+            res = requests.get("http://127.0.0.1:8000/", timeout=1)
+            if res.status_code == 200:
+                break
+        except Exception:
+            continue
+
+ensure_backend_running()
 
 # Page Configuration
 st.set_page_config(
