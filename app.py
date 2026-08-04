@@ -110,7 +110,7 @@ with tab1:
     # One-Click Sample PDF Option for Recruiters
     st.markdown("##### Or test quickly with pre-loaded sample data:")
     if st.button("📄 Load & Index Sample Credit Report"):
-        sample_path = "D:\\riskanalyst\\projects\\finrisk-ai\\backend\\data\\raw\\sample_credit_report.pdf"  # Update path if saved inside data/raw/
+        sample_path = "backend/data/raw/sample_credit_report.pdf"  
         try:
             with open(sample_path, "rb") as f:
                 files = {"file": ("sample_credit_report.pdf", f.read(), "application/pdf")}
