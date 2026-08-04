@@ -83,6 +83,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 # ==========================================
+# ==========================================
 # Tab 1: Document Upload and RAG Search
 # ==========================================
 with tab1:
@@ -105,6 +106,24 @@ with tab1:
                         st.error(f"Error ({res.status_code}): {res.text}")
                 except requests.exceptions.RequestException as e:
                     st.error(f"Backend connection failed: {str(e)}")
+
+    # One-Click Sample PDF Option for Recruiters
+    st.markdown("##### Or test quickly with pre-loaded sample data:")
+    if st.button("📄 Load & Index Sample Credit Report"):
+        sample_path = "sample_credit_report.pdf"  # Update path if saved inside data/raw/
+        try:
+            with open(sample_path, "rb") as f:
+                files = {"file": ("sample_credit_report.pdf", f.read(), "application/pdf")}
+                with st.spinner("Indexing Sample Credit Report into ChromaDB..."):
+                    res = requests.post(f"{API_BASE_URL}/documents/upload", files=files)
+                    if res.status_code == 201:
+                        st.success("Sample Credit Report successfully indexed!")
+                    else:
+                        st.error(f"Error ({res.status_code}): {res.text}")
+        except FileNotFoundError:
+            st.error("Sample PDF file not found in project repository.")
+        except requests.exceptions.RequestException as e:
+            st.error(f"Backend connection failed: {str(e)}")
 
     st.markdown("---")
     st.subheader("Semantic Query Search & Executive Insights")
@@ -165,7 +184,7 @@ with tab1:
                     st.error(f"API Error ({res.status_code}): {res.text}")
             except requests.exceptions.RequestException as e:
                 st.error(f"Failed to connect to backend server: {str(e)}")
-
+                
 # ==========================================
 # Tab 2: Financial Ratio Calculator
 # ==========================================
