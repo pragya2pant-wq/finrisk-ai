@@ -110,7 +110,7 @@ with tab1:
     # One-Click Sample PDF Option for Recruiters
     st.markdown("##### Or test quickly with pre-loaded sample data:")
     if st.button("📄 Load & Index Sample Credit Report"):
-        sample_path = "sample_credit_report.pdf"  # Update path if saved inside data/raw/
+        sample_path = "D:\\riskanalyst\\projects\\finrisk-ai\\backend\\data\\raw\\sample_credit_report.pdf"  # Update path if saved inside data/raw/
         try:
             with open(sample_path, "rb") as f:
                 files = {"file": ("sample_credit_report.pdf", f.read(), "application/pdf")}
@@ -184,7 +184,7 @@ with tab1:
                     st.error(f"API Error ({res.status_code}): {res.text}")
             except requests.exceptions.RequestException as e:
                 st.error(f"Failed to connect to backend server: {str(e)}")
-                
+
 # ==========================================
 # Tab 2: Financial Ratio Calculator
 # ==========================================
