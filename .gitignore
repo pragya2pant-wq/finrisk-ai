@@ -27,4 +27,4 @@ data/raw/*
 
 # Environment Variables & Secrets
 .env
-.env.local
+.env.localbackend/data/raw/*.csv
