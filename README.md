@@ -4,6 +4,14 @@ An enterprise-grade financial analytics system pairing a FastAPI REST API backen
 
 ---
 
+# FinRisk AI — Financial Risk Analytics Platform
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://finrisk-ai-gldkkxtgauhvsoqs4obafq.streamlit.app/)
+
+**Live Application:** [finrisk-ai.streamlit.app](https://finrisk-ai-gldkkxtgauhvsoqs4obafq.streamlit.app/)
+
+An enterprise-grade financial analytics system pairing a FastAPI REST API backend with a Streamlit executive dashboard.
+
 ## Key Features
 
 1. **Document Ingestion & RAG Executive Search:**
