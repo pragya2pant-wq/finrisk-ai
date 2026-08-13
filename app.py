@@ -60,8 +60,12 @@ with st.sidebar:
     
     st.markdown("### 👤 Author Information")
     st.markdown("**Developer:** Pragya Pant")
-    st.markdown("**Institute:** iPEC Solutions")
+    st.markdown("**Role:** AI/ML Developer — Finance Applications")
+    st.markdown("**Institute:** iPEC Solutions Pvt. Ltd, Bangalore")
+    st.markdown("**Built:** August 2026")
     st.markdown("**Version:** `v1.0.0 Enterprise`")
+    st.markdown("**LinkedIn:** [Pragya Pant](https://www.linkedin.com/in/pragyapant4827/)")
+    st.markdown("**GitHub:** [pragya2pant-wq](https://github.com/pragya2pant-wq)")
     
     st.markdown("---")
     st.markdown("### ⚙️ Engine Status")
