@@ -1,16 +1,26 @@
 # FinRisk AI — Financial Risk Analytics Platform
 
-An enterprise-grade financial analytics system pairing a FastAPI REST API backend with a Streamlit executive dashboard.
-
----
-
-# FinRisk AI — Financial Risk Analytics Platform
-
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://finrisk-ai-gldkkxtgauhvsoqs4obafq.streamlit.app/)
 
 **Live Application:** [finrisk-ai.streamlit.app](https://finrisk-ai-gldkkxtgauhvsoqs4obafq.streamlit.app/)
 
 An enterprise-grade financial analytics system pairing a FastAPI REST API backend with a Streamlit executive dashboard.
+
+---
+
+## 👤 Author Information
+
+* **Developer:** Pragya Pant
+* **LinkedIn:** [Pragya Pant](https://www.linkedin.com/in/pragyapant4827/)
+* **GitHub:** [pragya2pant-wq](https://github.com/pragya2pant-wq)
+* **Role:** AI/ML Developer — Finance Applications
+* **Institute:** iPEC Solutions Pvt. Ltd, Bangalore
+* **Built:** August 2026
+* **Version:** v1.0.0
+
+> ⚠️ **Disclaimer:** This is a portfolio/demonstration project built using synthetic/public datasets for educational purposes. It is not intended for actual credit or lending decisions.
+
+---
 
 ## Key Features
 
